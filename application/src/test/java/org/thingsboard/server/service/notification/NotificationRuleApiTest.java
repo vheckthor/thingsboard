@@ -342,7 +342,7 @@ public class NotificationRuleApiTest extends AbstractNotificationApiTest {
     @Test
     public void testNotificationRuleProcessing_entitiesLimit() throws Exception {
         int limit = 5;
-        updateDefaultTenantProfile(profileConfiguration -> {
+        updateDefaultTenantProfileConfig(profileConfiguration -> {
             profileConfiguration.setMaxDevices(limit);
             profileConfiguration.setMaxAssets(limit);
             profileConfiguration.setMaxCustomers(limit);
@@ -420,7 +420,7 @@ public class NotificationRuleApiTest extends AbstractNotificationApiTest {
         notificationRulesCache.evict(TenantId.SYS_TENANT_ID);
 
         int n = 10;
-        updateDefaultTenantProfile(profileConfiguration -> {
+        updateDefaultTenantProfileConfig(profileConfiguration -> {
             profileConfiguration.setTenantEntityExportRateLimit(n + ":600");
             profileConfiguration.setCustomerServerRestLimitsConfiguration(n + ":600");
             profileConfiguration.setTenantNotificationRequestsPerRuleRateLimit(n + ":600");
@@ -608,7 +608,7 @@ public class NotificationRuleApiTest extends AbstractNotificationApiTest {
     @Test
     public void testNotificationRequestsPerRuleRateLimits() throws Exception {
         int notificationRequestsLimit = 10;
-        updateDefaultTenantProfile(profileConfiguration -> {
+        updateDefaultTenantProfileConfig(profileConfiguration -> {
             profileConfiguration.setTenantNotificationRequestsPerRuleRateLimit(notificationRequestsLimit + ":300");
         });
 
@@ -690,7 +690,7 @@ public class NotificationRuleApiTest extends AbstractNotificationApiTest {
         NotificationRule rule = createNotificationRule(triggerConfig, "Test 1", "Test", target.getId());
 
         int n = 5;
-        updateDefaultTenantProfile(profileConfiguration -> {
+        updateDefaultTenantProfileConfig(profileConfiguration -> {
             profileConfiguration.setTenantEntityExportRateLimit(n + ":600");
             profileConfiguration.setTransportDeviceTelemetryMsgRateLimit(n + ":800");
         });
